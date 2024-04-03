@@ -17,6 +17,7 @@ import { BigNumber } from "ethers";
 import VideoComponent from "@/components/VideoComponent";
 import Youtube from "../../assets/logos/Youtube.png";
 import collections from "@/utils/collections";
+import { Header } from "@/components/Header";
 
 
 const Home = () => {
@@ -81,7 +82,8 @@ const Home = () => {
   
   return (
     <div className="bg6 flex flex-col justify-start items-center scrollbar-hidden content">
-      <Navbar isSticky={true}></Navbar>
+      {/* <Navbar isSticky={true}></Navbar> */}
+      <Header />
       <LoadingModal isOpen={context.loading}></LoadingModal>
       {/* <div className="h-[100vh] w-full flex flex-col justify-center items-center">
         {!isDisconnected && (

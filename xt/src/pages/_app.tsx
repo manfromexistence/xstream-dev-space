@@ -15,6 +15,7 @@ import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 import { SignerContextProvider } from "@/contexts/signerContext";
 import { StreamContextProvider } from "@/contexts/streamContext";
 import { CurrentUserOrStreamerContextProvider } from "@/contexts/currUserOrStreamerContext";
+import { Provider } from "@/components/Provider";
 
 const { chains, provider } = configureChains(
   [polygonMumbai],
@@ -56,8 +57,9 @@ export default function App({ Component, pageProps }: AppProps) {
   }, []);
 
   return (
+    <Provider>
     <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider chains={chains}>
+      {/* <RainbowKitProvider chains={chains}>
         <Context.Provider
           value={{
             roomId,
@@ -74,7 +76,24 @@ export default function App({ Component, pageProps }: AppProps) {
             </StreamContextProvider>
           </SignerContextProvider>
         </Context.Provider>
-      </RainbowKitProvider>
+      </RainbowKitProvider> */}
+              <Context.Provider
+          value={{
+            roomId,
+            setRoomId,
+            loading,
+            setLoading
+          }}
+        >
+          <SignerContextProvider>
+            <StreamContextProvider>
+              <CurrentUserOrStreamerContextProvider>
+                <Component {...pageProps} />
+              </CurrentUserOrStreamerContextProvider>
+            </StreamContextProvider>
+          </SignerContextProvider>
+        </Context.Provider>
     </WagmiConfig>
+    </Provider>
   );
 }
