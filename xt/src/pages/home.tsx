@@ -82,8 +82,8 @@ const Home = () => {
   
   return (
     <div className="bg6 flex flex-col justify-start items-center scrollbar-hidden content">
-      {/* <Navbar isSticky={true}></Navbar> */}
-      <Header />
+      <Navbar isSticky={true}></Navbar>
+      {/* <Header /> */}
       <LoadingModal isOpen={context.loading}></LoadingModal>
       {/* <div className="h-[100vh] w-full flex flex-col justify-center items-center">
         {!isDisconnected && (

@@ -17,22 +17,22 @@ import { StreamContextProvider } from "@/contexts/streamContext";
 import { CurrentUserOrStreamerContextProvider } from "@/contexts/currUserOrStreamerContext";
 import { Provider } from "@/components/Provider";
 
-const { chains, provider } = configureChains(
-  [polygonMumbai],
-  [
-    jsonRpcProvider({
-      rpc: () => ({
-        http: "https://responsive-lively-brook.quiknode.pro/4bc6ee0cd8f90e1457df450bc756c10547be2f32",
-      }),
-    }),
-  ]
-);
+// const { chains, provider } = configureChains(
+//   [polygonMumbai],
+//   [
+//     jsonRpcProvider({
+//       rpc: () => ({
+//         http: "https://responsive-lively-brook.quiknode.pro/4bc6ee0cd8f90e1457df450bc756c10547be2f32",
+//       }),
+//     }),
+//   ]
+// );
 
-const { connectors } = getDefaultWallets({
-  appName: "My RainbowKit App",
-  projectId: process.env.NEXT_PUBLIC_WALLETCONNECT as string,
-  chains,
-});
+// const { connectors } = getDefaultWallets({
+//   appName: "My RainbowKit App",
+//   projectId: process.env.NEXT_PUBLIC_WALLETCONNECT as string,
+//   chains,
+// });
 
 // const config = createConfig({
 //   autoConnect: true,
@@ -40,11 +40,11 @@ const { connectors } = getDefaultWallets({
 //   webSocketPublicClient,
 // });
 
-const wagmiClient = createClient({
-  autoConnect: true,
-  connectors,
-  provider,
-});
+// const wagmiClient = createClient({
+//   autoConnect: true,
+//   connectors,
+//   provider,
+// });
 
 export default function App({ Component, pageProps }: AppProps) {
   const { initialize, isInitialized } = useHuddle01();
@@ -58,25 +58,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <Provider>
-    <WagmiConfig client={wagmiClient}>
-      {/* <RainbowKitProvider chains={chains}>
-        <Context.Provider
-          value={{
-            roomId,
-            setRoomId,
-            loading,
-            setLoading
-          }}
-        >
-          <SignerContextProvider>
-            <StreamContextProvider>
-              <CurrentUserOrStreamerContextProvider>
-                <Component {...pageProps} />
-              </CurrentUserOrStreamerContextProvider>
-            </StreamContextProvider>
-          </SignerContextProvider>
-        </Context.Provider>
-      </RainbowKitProvider> */}
+      {/* <WagmiConfig client={wagmiClient}>
               <Context.Provider
           value={{
             roomId,
@@ -93,7 +75,23 @@ export default function App({ Component, pageProps }: AppProps) {
             </StreamContextProvider>
           </SignerContextProvider>
         </Context.Provider>
-    </WagmiConfig>
+    </WagmiConfig> */}
+      <Context.Provider
+        value={{
+          roomId,
+          setRoomId,
+          loading,
+          setLoading
+        }}
+      >
+        <SignerContextProvider>
+          <StreamContextProvider>
+            <CurrentUserOrStreamerContextProvider>
+              <Component {...pageProps} />
+            </CurrentUserOrStreamerContextProvider>
+          </StreamContextProvider>
+        </SignerContextProvider>
+      </Context.Provider>
     </Provider>
   );
 }

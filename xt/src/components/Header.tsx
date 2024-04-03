@@ -4,14 +4,14 @@ import {
   lightTheme,
   RainbowKitProvider,
 } from '@rainbow-me/rainbowkit';
-import { Badge } from './Badge/Badge';
-import { Box } from './Box/Box';
+// import { span } from './span/span';
+// import { div } from './div/div';
 import { chains } from './Provider';
-import { Text } from './Text/Text';
-import { vars } from '../css/vars.css';
+// import { span } from './span/span';
+// import { vars } from '../css/vars.css';
 import NextLink from 'next/link';
 import React from 'react';
-import { header, logo, row } from './Header.css';
+// import { header, logo, row } from './Header.css';
 
 const RAINBOWKIT_VERSION = "2.0.1";
 
@@ -26,11 +26,10 @@ export function Header({
   sticky?: boolean;
 }) {
   return (
-    <Box className={sticky ? header : undefined} {...props}>
-      <Box className={row}>
-        <NextLink href="/">
-          <Box
-            alt="Rainbow logo"
+    <div className="hi" {...props}>
+      <div className="row">
+        {/* <NextLink href="/">
+          <div
             as="img"
             className={logo}
             marginRight="4"
@@ -43,40 +42,32 @@ export function Header({
             transitionProperty="transform"
             transitionTimingFunction="ease"
           />
-        </NextLink>
+        </NextLink> */}
 
-        <Box
-          // eslint-disable-next-line sort-keys-fix/sort-keys-fix
-          alignItems={{ xs: 'flex-start', sm: 'center' }}
-          display="flex"
-          // eslint-disable-next-line sort-keys-fix/sort-keys-fix
-          flexDirection={{ xs: 'column', sm: 'row' }}
-          // eslint-disable-next-line sort-keys-fix/sort-keys-fix
-          gap={{ xs: '1', sm: '4' }}
-        >
-          <Text style={{ lineHeight: 1 }} variant="title3" weight="bold">
+        <div>
+          <span style={{ lineHeight: 1 }}>
             RainbowKit
-          </Text>
-          <Badge>{RAINBOWKIT_VERSION}</Badge>
-        </Box>
+          </span>
+          <span>{RAINBOWKIT_VERSION}</span>
+        </div>
 
-        <Box style={{ marginLeft: 'auto' }}>
+        <div style={{ marginLeft: 'auto' }}>
           <RainbowKitProvider
             chains={chains}
             theme={
               darkMode
-                ? darkTheme({ accentColor: vars.colors.blue })
-                : lightTheme({ accentColor: vars.colors.blue })
+                ? darkTheme({ accentColor: "red" })
+                : lightTheme({ accentColor: "blue" })
             }
           >
             <ConnectButton
               accountStatus={{ largeScreen: 'full', smallScreen: 'avatar' }}
             />
           </RainbowKitProvider>{' '}
-        </Box>
-      </Box>
-      {docsMobileMenuRef && (
-        <Box
+        </div>
+      </div>
+      {/* {docsMobileMenuRef && (
+        <div
           borderBottomWidth="1"
           borderColor="separator"
           display={{ lg: 'none' }}
@@ -85,7 +76,7 @@ export function Header({
           paddingY="4"
           ref={docsMobileMenuRef}
         />
-      )}
-    </Box>
+      )} */}
+    </div>
   );
 }
